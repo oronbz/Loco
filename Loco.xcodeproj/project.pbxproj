@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		751F40DDAB380D6D8C108044 /* Pods_Loco.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6951B76E7F4B832BE63E35 /* Pods_Loco.framework */; };
 		923987291BE7936A002C8D99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923987281BE7936A002C8D99 /* AppDelegate.swift */; };
 		9239872B1BE7936A002C8D99 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9239872A1BE7936A002C8D99 /* ViewController.swift */; };
 		9239872E1BE7936A002C8D99 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9239872C1BE7936A002C8D99 /* Main.storyboard */; };
@@ -14,6 +15,16 @@
 		923987331BE7936A002C8D99 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 923987311BE7936A002C8D99 /* LaunchScreen.storyboard */; };
 		9239873E1BE7936A002C8D99 /* LocoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9239873D1BE7936A002C8D99 /* LocoTests.swift */; };
 		923987491BE7936A002C8D99 /* LocoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923987481BE7936A002C8D99 /* LocoUITests.swift */; };
+		9239875C1BE7A6EE002C8D99 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9239875B1BE7A6EE002C8D99 /* Constants.swift */; };
+		9239875E1BE7A89C002C8D99 /* PlacesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9239875D1BE7A89C002C8D99 /* PlacesAPI.swift */; };
+		923987601BE7B1A0002C8D99 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9239875F1BE7B1A0002C8D99 /* Place.swift */; };
+		923987621BE7C205002C8D99 /* PlaceAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923987611BE7C205002C8D99 /* PlaceAnnotationView.swift */; };
+		923987641BE7D673002C8D99 /* PlaceAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923987631BE7D673002C8D99 /* PlaceAnnotation.swift */; };
+		923987661BE8E5BD002C8D99 /* UserAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923987651BE8E5BD002C8D99 /* UserAnnotationView.swift */; };
+		923987681BE8ED24002C8D99 /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923987671BE8ED24002C8D99 /* Prediction.swift */; };
+		9239876C1BE90BA7002C8D99 /* CustomUserLocationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9239876B1BE90BA7002C8D99 /* CustomUserLocationAnnotation.swift */; };
+		9239876E1BE91B58002C8D99 /* PlaceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9239876D1BE91B58002C8D99 /* PlaceListViewController.swift */; };
+		923987701BE91BA7002C8D99 /* PlaceListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9239876F1BE91BA7002C8D99 /* PlaceListDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,9 +45,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2BB19100692DFDDAF67CC1E8 /* Pods-Loco.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Loco.release.xcconfig"; path = "Pods/Target Support Files/Pods-Loco/Pods-Loco.release.xcconfig"; sourceTree = "<group>"; };
+		3F6951B76E7F4B832BE63E35 /* Pods_Loco.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Loco.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		923987251BE7936A002C8D99 /* Loco.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Loco.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		923987281BE7936A002C8D99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9239872A1BE7936A002C8D99 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9239872A1BE7936A002C8D99 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../ViewController.swift; sourceTree = "<group>"; };
 		9239872D1BE7936A002C8D99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9239872F1BE7936A002C8D99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		923987321BE7936A002C8D99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +60,17 @@
 		923987441BE7936A002C8D99 /* LocoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		923987481BE7936A002C8D99 /* LocoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocoUITests.swift; sourceTree = "<group>"; };
 		9239874A1BE7936A002C8D99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9239875B1BE7A6EE002C8D99 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		9239875D1BE7A89C002C8D99 /* PlacesAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesAPI.swift; sourceTree = "<group>"; };
+		9239875F1BE7B1A0002C8D99 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		923987611BE7C205002C8D99 /* PlaceAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceAnnotationView.swift; sourceTree = "<group>"; };
+		923987631BE7D673002C8D99 /* PlaceAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceAnnotation.swift; sourceTree = "<group>"; };
+		923987651BE8E5BD002C8D99 /* UserAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAnnotationView.swift; sourceTree = "<group>"; };
+		923987671BE8ED24002C8D99 /* Prediction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Prediction.swift; sourceTree = "<group>"; };
+		9239876B1BE90BA7002C8D99 /* CustomUserLocationAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUserLocationAnnotation.swift; sourceTree = "<group>"; };
+		9239876D1BE91B58002C8D99 /* PlaceListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceListViewController.swift; sourceTree = "<group>"; };
+		9239876F1BE91BA7002C8D99 /* PlaceListDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceListDelegate.swift; sourceTree = "<group>"; };
+		D7FC16572EA9418147B44258 /* Pods-Loco.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Loco.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Loco/Pods-Loco.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				751F40DDAB380D6D8C108044 /* Pods_Loco.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +99,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5A7F26D39DE430A27A6529DC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3F6951B76E7F4B832BE63E35 /* Pods_Loco.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9239871C1BE7936A002C8D99 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +114,8 @@
 				9239873C1BE7936A002C8D99 /* LocoTests */,
 				923987471BE7936A002C8D99 /* LocoUITests */,
 				923987261BE7936A002C8D99 /* Products */,
+				B3B0821EDEBF49269EF240EF /* Pods */,
+				5A7F26D39DE430A27A6529DC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,11 +132,13 @@
 		923987271BE7936A002C8D99 /* Loco */ = {
 			isa = PBXGroup;
 			children = (
+				923987561BE793CC002C8D99 /* Models */,
+				923987571BE793D1002C8D99 /* Views */,
+				923987581BE793D6002C8D99 /* Controllers */,
+				923987591BE793DE002C8D99 /* Stores */,
+				9239875A1BE793E2002C8D99 /* Helpers */,
 				923987281BE7936A002C8D99 /* AppDelegate.swift */,
-				9239872A1BE7936A002C8D99 /* ViewController.swift */,
-				9239872C1BE7936A002C8D99 /* Main.storyboard */,
 				9239872F1BE7936A002C8D99 /* Assets.xcassets */,
-				923987311BE7936A002C8D99 /* LaunchScreen.storyboard */,
 				923987341BE7936A002C8D99 /* Info.plist */,
 			);
 			path = Loco;
@@ -125,6 +162,63 @@
 			path = LocoUITests;
 			sourceTree = "<group>";
 		};
+		923987561BE793CC002C8D99 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9239875F1BE7B1A0002C8D99 /* Place.swift */,
+				923987631BE7D673002C8D99 /* PlaceAnnotation.swift */,
+				923987671BE8ED24002C8D99 /* Prediction.swift */,
+				9239876B1BE90BA7002C8D99 /* CustomUserLocationAnnotation.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		923987571BE793D1002C8D99 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				923987311BE7936A002C8D99 /* LaunchScreen.storyboard */,
+				9239872C1BE7936A002C8D99 /* Main.storyboard */,
+				923987611BE7C205002C8D99 /* PlaceAnnotationView.swift */,
+				923987651BE8E5BD002C8D99 /* UserAnnotationView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		923987581BE793D6002C8D99 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9239872A1BE7936A002C8D99 /* ViewController.swift */,
+				9239876D1BE91B58002C8D99 /* PlaceListViewController.swift */,
+				9239876F1BE91BA7002C8D99 /* PlaceListDelegate.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		923987591BE793DE002C8D99 /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+				9239875D1BE7A89C002C8D99 /* PlacesAPI.swift */,
+			);
+			path = Stores;
+			sourceTree = "<group>";
+		};
+		9239875A1BE793E2002C8D99 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				9239875B1BE7A6EE002C8D99 /* Constants.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		B3B0821EDEBF49269EF240EF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D7FC16572EA9418147B44258 /* Pods-Loco.debug.xcconfig */,
+				2BB19100692DFDDAF67CC1E8 /* Pods-Loco.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +226,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9239874D1BE7936A002C8D99 /* Build configuration list for PBXNativeTarget "Loco" */;
 			buildPhases = (
+				6B0B5F88C684437C71119581 /* Check Pods Manifest.lock */,
 				923987211BE7936A002C8D99 /* Sources */,
 				923987221BE7936A002C8D99 /* Frameworks */,
 				923987231BE7936A002C8D99 /* Resources */,
+				BEB532722D2B8BE46B6C7ABD /* Embed Pods Frameworks */,
+				D17F092EB72F89DAB7376F6E /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -251,13 +348,71 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6B0B5F88C684437C71119581 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		BEB532722D2B8BE46B6C7ABD /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Loco/Pods-Loco-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D17F092EB72F89DAB7376F6E /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Loco/Pods-Loco-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		923987211BE7936A002C8D99 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				923987661BE8E5BD002C8D99 /* UserAnnotationView.swift in Sources */,
+				9239875E1BE7A89C002C8D99 /* PlacesAPI.swift in Sources */,
+				923987681BE8ED24002C8D99 /* Prediction.swift in Sources */,
+				9239876E1BE91B58002C8D99 /* PlaceListViewController.swift in Sources */,
+				9239876C1BE90BA7002C8D99 /* CustomUserLocationAnnotation.swift in Sources */,
 				9239872B1BE7936A002C8D99 /* ViewController.swift in Sources */,
 				923987291BE7936A002C8D99 /* AppDelegate.swift in Sources */,
+				9239875C1BE7A6EE002C8D99 /* Constants.swift in Sources */,
+				923987601BE7B1A0002C8D99 /* Place.swift in Sources */,
+				923987621BE7C205002C8D99 /* PlaceAnnotationView.swift in Sources */,
+				923987701BE91BA7002C8D99 /* PlaceListDelegate.swift in Sources */,
+				923987641BE7D673002C8D99 /* PlaceAnnotation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +454,7 @@
 				9239872D1BE7936A002C8D99 /* Base */,
 			);
 			name = Main.storyboard;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		923987311BE7936A002C8D99 /* LaunchScreen.storyboard */ = {
@@ -307,6 +463,7 @@
 				923987321BE7936A002C8D99 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -395,6 +552,7 @@
 		};
 		9239874E1BE7936A002C8D99 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D7FC16572EA9418147B44258 /* Pods-Loco.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Loco/Info.plist;
@@ -406,6 +564,7 @@
 		};
 		9239874F1BE7936A002C8D99 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2BB19100692DFDDAF67CC1E8 /* Pods-Loco.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Loco/Info.plist;
@@ -482,6 +641,7 @@
 				9239874F1BE7936A002C8D99 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		923987501BE7936A002C8D99 /* Build configuration list for PBXNativeTarget "LocoTests" */ = {
 			isa = XCConfigurationList;
@@ -490,6 +650,7 @@
 				923987521BE7936A002C8D99 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		923987531BE7936A002C8D99 /* Build configuration list for PBXNativeTarget "LocoUITests" */ = {
 			isa = XCConfigurationList;
@@ -498,6 +659,7 @@
 				923987551BE7936A002C8D99 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
