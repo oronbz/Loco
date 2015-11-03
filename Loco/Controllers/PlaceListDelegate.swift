@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol PlaceListDelegate {
+protocol PlaceListDelegate: class {
     func placeListViewController(controller: PlaceListViewController, didSelectPlace place: Place)
 }

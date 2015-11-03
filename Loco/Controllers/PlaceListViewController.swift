@@ -12,7 +12,7 @@ import Font_Awesome_Swift
 
 class PlaceListViewController: UIViewController {
     
-    var delegate: PlaceListDelegate?
+    weak var delegate: PlaceListDelegate?
     var places = [Place]()
     
     override func viewDidLoad() {
