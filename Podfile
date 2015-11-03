@@ -7,7 +7,6 @@ target 'Loco' do
     pod 'Font-Awesome-Swift', '~> 1.2.0'
     pod 'Alamofire', '~> 3.0'
     pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
-    pod 'AFNetworking', '~> 2.0'
 end
 
 target 'LocoTests' do
