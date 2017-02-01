@@ -9,5 +9,5 @@
 import Foundation
 
 protocol PlaceListDelegate: class {
-    func placeListViewController(controller: PlaceListViewController, didSelectPlace place: Place)
+    func placeListViewController(_ controller: PlaceListViewController, didSelectPlace place: Place)
 }

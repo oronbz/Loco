@@ -9,6 +9,30 @@
 import UIKit
 import MapKit
 import Font_Awesome_Swift
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func >= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l >= r
+  default:
+    return !(lhs < rhs)
+  }
+}
+
 
 class ViewController: UIViewController {
     
@@ -24,7 +48,7 @@ class ViewController: UIViewController {
     var places = [Place]()
     var autocompleteResults = [Prediction]() {
         didSet {
-            autocompleteTableView.hidden = !(autocompleteResults.count > 0)
+            autocompleteTableView.isHidden = !(autocompleteResults.count > 0)
             autocompleteTableView.reloadData()
         }
     }
@@ -40,7 +64,7 @@ class ViewController: UIViewController {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         
-        searchBox.addTarget(self, action: "textFieldDidChange:", forControlEvents: UIControlEvents.EditingChanged)
+        searchBox.addTarget(self, action: #selector(ViewController.textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
 
         setupButtons()
         
@@ -48,24 +72,24 @@ class ViewController: UIViewController {
     }
     
     func setupButtons() {
-        currentLocationButton.setFAIcon(.FAMapMarker, iconSize: 30, forState: .Normal)
+        currentLocationButton.setFAIcon(icon: .FAMapMarker, iconSize: 30, forState: .normal)
         currentLocationButton.layer.cornerRadius = 0.5 * currentLocationButton.bounds.size.width
         currentLocationButton.layer.shadowRadius = 3
         currentLocationButton.layer.shadowOpacity = 0.5
         
-        placeListButton.setFAIcon(.FAList, iconSize: 30, forState: .Normal)
+        placeListButton.setFAIcon(icon: .FAList, iconSize: 30, forState: .normal)
         placeListButton.layer.cornerRadius = 0.5 * currentLocationButton.bounds.size.width
         placeListButton.layer.shadowRadius = 3
         placeListButton.layer.shadowOpacity = 0.5
     }
     
-    @IBAction func goToCurrentLocation(sender: AnyObject) {
+    @IBAction func goToCurrentLocation(_ sender: AnyObject) {
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         shouldUpdateMapview = true
     }
     
-    func goToPlace(place: Place, setUserAnnotation: Bool) {
+    func goToPlace(_ place: Place, setUserAnnotation: Bool) {
         removeCustomUserAnnotation()
         
         let coordinate = CLLocationCoordinate2D(latitude: place.latitude, longitude: place.longitude)
@@ -81,7 +105,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func goToCoordinate(coordinate: CLLocationCoordinate2D) {
+    func goToCoordinate(_ coordinate: CLLocationCoordinate2D) {
         let latDelta: CLLocationDegrees = 0.01
         let lonDelta: CLLocationDegrees = 0.01
         
@@ -93,7 +117,7 @@ class ViewController: UIViewController {
         
         placesApi.placesNearLatitude(coordinate.latitude, longitude: coordinate.longitude) {
             results, error in
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 if let errorMessage = error {
                     print(errorMessage)
                     self.errorAlert(errorMessage)
@@ -108,7 +132,7 @@ class ViewController: UIViewController {
         
     }
     
-    func annotateNearbyPlaces(places: [Place]) {
+    func annotateNearbyPlaces(_ places: [Place]) {
         // remove all existing annotations
         mapView.removeAnnotations(placeAnnotations)
         placeAnnotations.removeAll()
@@ -122,9 +146,9 @@ class ViewController: UIViewController {
         }
     }
     
-    func autocomplete(text: String) {
-        placesApi.autocomplete(searchBox.text!) { results, error in
-            dispatch_async(dispatch_get_main_queue()) {
+    func autocomplete(_ text: String) {
+        placesApi.autocomplete(input: searchBox.text!) { results, error in
+            DispatchQueue.main.async {
                 if let errorMessage = error {
                     self.errorAlert(errorMessage)
                 } else {
@@ -134,11 +158,11 @@ class ViewController: UIViewController {
         }
     }
     
-    func errorAlert(message: String) {
-        let alert = UIAlertController(title: "Oops", message: message, preferredStyle: .Alert)
-        let action = UIAlertAction(title: "OK", style: .Default, handler: nil)
+    func errorAlert(_ message: String) {
+        let alert = UIAlertController(title: "Oops", message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(action)
-        presentViewController(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
     
     func removeCustomUserAnnotation() {
@@ -147,13 +171,13 @@ class ViewController: UIViewController {
         }
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "PlaceList" {
-            let destController = segue.destinationViewController as! PlaceListViewController
+            let destController = segue.destination as! PlaceListViewController
             destController.places = places
             destController.delegate = self
         }
@@ -163,12 +187,12 @@ class ViewController: UIViewController {
 
 // MARK: textField
 extension ViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
-    func textFieldDidChange(textField: UITextField) {
+    func textFieldDidChange(_ textField: UITextField) {
         if textField.text != nil && textField.text?.characters.count >= 2 {
             autocomplete(textField.text!)
         } else {
@@ -176,18 +200,18 @@ extension ViewController: UITextFieldDelegate {
         }
     }
     
-    func textFieldDidBeginEditing(textField: UITextField) {
-        autocompleteTableView.hidden = true
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        autocompleteTableView.isHidden = true
     }
     
-    func textFieldDidEndEditing(textField: UITextField) {
-        autocompleteTableView.hidden = true
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        autocompleteTableView.isHidden = true
     }
 }
 
 //MARK: Location Manager
 extension ViewController: CLLocationManagerDelegate {
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if shouldUpdateMapview {
             let userLocation = locations[0]
             let latitude = userLocation.coordinate.latitude
@@ -199,7 +223,7 @@ extension ViewController: CLLocationManagerDelegate {
             
             placesApi.addressByLatitude(coordinate.latitude, longitude: coordinate.longitude) {
                 result, error in
-                dispatch_async(dispatch_get_main_queue()) {
+                DispatchQueue.main.async {
                     if let errorMessage = error {
                         self.errorAlert(errorMessage)
                     } else if let address = result {
@@ -217,22 +241,22 @@ extension ViewController: CLLocationManagerDelegate {
 
 //MARK: mapView
 extension ViewController: MKMapViewDelegate {
-    func mapView(mapView: MKMapView, didAddAnnotationViews views: [MKAnnotationView]) {
+    func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
         
         var delay = 0.00;
         for av in views {
             if av is PlaceAnnotationView {
-                av.layer.anchorPoint = CGPointMake(0.5, 1.0);
-                av.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.001, 0.001)
+                av.layer.anchorPoint = CGPoint(x: 0.5, y: 1.0);
+                av.transform = CGAffineTransform.identity.scaledBy(x: 0.001, y: 0.001)
                 delay += 0.1
-                UIView.animateWithDuration(0.45, delay: delay, usingSpringWithDamping: 0.5, initialSpringVelocity: 10, options: .CurveEaseOut, animations: {
-                    av.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
+                UIView.animate(withDuration: 0.45, delay: delay, usingSpringWithDamping: 0.5, initialSpringVelocity: 10, options: .curveEaseOut, animations: {
+                    av.transform = CGAffineTransform.identity.scaledBy(x: 1.0, y: 1.0);
                     }, completion: nil)
             }
         }
     }
     
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation || annotation is CustomUserLocationAnnotation{
             let userAnnotationView = UserAnnotationView(annotation: annotation, reuseIdentifier: "User")
             userAnnotationView.canShowCallout = true
@@ -249,24 +273,24 @@ extension ViewController: MKMapViewDelegate {
 
 //MARK: tableView
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return autocompleteResults.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "Cell")
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "Cell")
         cell.textLabel?.text = autocompleteResults[indexPath.row].description
         cell.imageView?.image = UIImage(named: "search")
         cell.imageView?.layer.opacity = 0.7
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let prediction = autocompleteResults[indexPath.row]
         placesApi.placeById(prediction.placeId) {
             result, error in
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 if let errorMessage = error {
                     self.errorAlert(errorMessage)
                 } else if let place = result {
@@ -283,7 +307,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 
 //MARK: placeListDelegate
 extension ViewController: PlaceListDelegate {
-    func placeListViewController(controller: PlaceListViewController, didSelectPlace place: Place) {
+    func placeListViewController(_ controller: PlaceListViewController, didSelectPlace place: Place) {
         goToPlace(place, setUserAnnotation: false)
     }
 }

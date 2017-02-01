@@ -10,11 +10,6 @@ import UIKit
 import MapKit
 
 class PlaceAnnotationView: MKAnnotationView {
-
-    // Called when drawing the AttractionAnnotationView
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -25,17 +20,17 @@ class PlaceAnnotationView: MKAnnotationView {
         if let placeAnnotation = self.annotation as? PlaceAnnotation {
             
             switch (placeAnnotation.type) {
-            case .Bakery:
+            case .bakery:
                 image = UIImage(named: "bakery_pin")
-            case .Bar:
+            case .bar:
                 image = UIImage(named: "bar_pin")
-            case .Cafe:
+            case .cafe:
                 image = UIImage(named: "cafe_pin")
-            case .Grocery:
+            case .grocery:
                 image = UIImage(named: "grocery_or_supermarket_pin")
-            case .Food:
+            case .food:
                 image = UIImage(named: "restaurant_pin")
-            case .Misc:
+            case .misc:
                 image = UIImage(named: "misc_pin")
                 
             }

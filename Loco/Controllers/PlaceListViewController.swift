@@ -19,39 +19,39 @@ class PlaceListViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
-    override func prefersStatusBarHidden() -> Bool {
+    override var prefersStatusBarHidden : Bool {
         return true
     }
     
-    @IBAction func close(sender: AnyObject) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func close(_ sender: AnyObject) {
+        dismiss(animated: true, completion: nil)
     }
 }
 
 extension PlaceListViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return places.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let place = places[indexPath.row]
         
-        let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "Cell")
+        let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "Cell")
         cell.textLabel?.text = place.name
         
         var image: UIImage!
         switch place.type {
-        case .Bakery:
+        case .bakery:
             image = UIImage(named: "bakery")
-        case .Bar:
+        case .bar:
             image = UIImage(named: "bar")
-        case .Cafe:
+        case .cafe:
             image = UIImage(named: "cafe")
-        case .Grocery:
+        case .grocery:
             image = UIImage(named: "grocery_or_supermarket")
-        case .Food:
+        case .food:
             image = UIImage(named: "restaurant")
-        case .Misc:
+        case .misc:
             image = UIImage(named: "misc")
         }
         cell.imageView?.image = image
@@ -59,10 +59,10 @@ extension PlaceListViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if delegate != nil {
             delegate?.placeListViewController(self, didSelectPlace: places[indexPath.row])
-            dismissViewControllerAnimated(true, completion: nil)
+            dismiss(animated: true, completion: nil)
         }
         
     }

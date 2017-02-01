@@ -14,52 +14,52 @@ struct Place {
     let name: String
     let type: PlaceType
     
-    static func typeWithString(type: String) -> PlaceType{
+    static func typeWithString(_ type: String) -> PlaceType{
         switch (type) {
         case "food":
-            return .Food
+            return .food
         case "restaurant":
-            return .Food
+            return .food
         case "cafe":
-            return .Cafe
+            return .cafe
         case "bakery":
-            return .Bakery
+            return .bakery
         case "bar":
-            return .Bar
+            return .bar
         case "grocery_or_supermarket":
-            return .Grocery
+            return .grocery
         default:
-            return .Misc
+            return .misc
         }
     }
     
-    static func typeFromTypes(types: [String]) -> PlaceType {
+    static func typeFromTypes(_ types: [String]) -> PlaceType {
         if types.contains("cafe") {
-            return .Cafe
+            return .cafe
         }
         if types.contains("bar") {
-            return .Bar
+            return .bar
         }
         if types.contains("bakery") {
-            return .Bakery
+            return .bakery
         }
         if types.contains("grocery_or_supermarket") {
-            return .Grocery
+            return .grocery
         }
         if types.contains("food") || types.contains("restaurant") {
-            return .Food
+            return .food
         }
-        return .Misc
+        return .misc
     }
 }
 
 enum PlaceType {
-    case Food
-    case Cafe
-    case Bakery
-    case Bar
-    case Grocery
-    case Misc // default
+    case food
+    case cafe
+    case bakery
+    case bar
+    case grocery
+    case misc // default
     
     
 }
